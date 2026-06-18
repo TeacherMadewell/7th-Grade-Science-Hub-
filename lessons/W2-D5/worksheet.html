@@ -1,0 +1,352 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Magnetic Forces — Worksheet</title>
+<style>/* ws.css — student-facing worksheet, light theme */
+:root {
+  --ink: #181b22;
+  --mist: #5a606c;
+  --line: #cfd4df;
+  --gold: #8a5a00;
+  --cyan: #0a6373;
+  --ok: #1c7a45;
+  --no: #b00020;
+  --bg-page: #eef1f6;
+  --bg-sheet: #fff;
+  --radius: 8px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, Inter, system-ui, sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--bg-page);
+  margin: 0;
+  padding: 28px 16px 48px;
+  line-height: 1.5;
+}
+
+/* Page container */
+.ws {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--bg-sheet);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 28px 32px 36px;
+}
+
+/* ── Header ── */
+.ws-head { margin-bottom: 24px; }
+
+.eyebrow {
+  font: 600 11px/1 ui-monospace, monospace;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.ws-head h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.sub {
+  font-size: 13px;
+  color: var(--mist);
+  margin-bottom: 18px;
+}
+
+/* Name/period row */
+.ws-id {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ws-id input {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* ── Sections ── */
+.ws-sec {
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+  padding-top: 18px;
+}
+
+.ws-sec h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin: 0 0 14px;
+}
+
+/* ── Question blocks ── */
+.q {
+  margin-bottom: 18px;
+}
+
+.q-prompt {
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+/* ── Inputs ── */
+input, select, textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fbfcfe;
+  color: var(--ink);
+  transition: border-color .15s;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+}
+
+textarea, .q-short {
+  min-height: 88px;
+  resize: vertical;
+}
+
+/* Radio/checkbox option lists */
+.q-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.q-opts label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.q-opts input[type=radio] {
+  width: auto;
+  flex-shrink: 0;
+}
+
+/* Correct/incorrect markers */
+.q-mark {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 5px;
+  min-height: 1em;
+}
+
+.q-mark.is-ok { color: var(--ok); }
+.q-mark.is-no { color: var(--no); }
+
+/* ── Sim embed ── */
+.ws-sim {
+  margin: 18px 0;
+}
+
+.ws-sim iframe {
+  width: 100%;
+  height: 520px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  display: block;
+}
+
+/* ── Footer ── */
+.ws-foot {
+  border-top: 1px solid var(--line);
+  margin-top: 28px;
+  padding-top: 20px;
+}
+
+#download {
+  font: 600 15px/1 inherit;
+  background: var(--ink);
+  color: #fff;
+  border: 0;
+  border-radius: var(--radius);
+  padding: 13px 24px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+#download:hover { background: #000; }
+
+.note {
+  font-size: 12px;
+  color: var(--mist);
+  margin-top: 10px;
+}
+
+/* ── Print ── */
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  .ws {
+    max-width: 100%;
+    border: none;
+    border-radius: 0;
+    padding: 16px 24px;
+    box-shadow: none;
+  }
+
+  /* Hide interactive/digital-only elements */
+  #download { display: none; }
+  .q-mark { display: none; }
+  .ws-sim { display: none; }
+  .note { display: none; }
+
+  /* Keep prompts and inputs visible as blank lines */
+  .q-prompt { font-weight: 600; }
+
+  input, select, textarea {
+    border: none;
+    border-bottom: 1px solid #888;
+    border-radius: 0;
+    background: transparent;
+    padding: 4px 2px;
+  }
+
+  textarea, .q-short {
+    min-height: 72px;
+  }
+
+  .ws-sec { break-inside: avoid; }
+  .q { break-inside: avoid; }
+}
+
+/* Check-before-the-sim — reveal the correct answer + why after they commit */
+.q-reveal{margin:8px 0 2px;padding:8px 11px;border-left:3px solid #1c7a45;background:#eaf6ee;border-radius:4px;font-size:13.5px;line-height:1.45;color:#14532d}
+.q-reveal b{color:#0f3d22}
+.ws-reveal{margin:12px 0 4px;font-family:inherit;font-weight:600;font-size:14px;background:#0a6373;color:#fff;border:0;border-radius:7px;padding:9px 16px;cursor:pointer}
+.ws-reveal:hover{background:#0c7689}
+.ws-reveal:disabled{background:#cfd4df;color:#5a606c;cursor:default}
+@media print{ .ws-reveal{display:none} .q-reveal{display:none} }
+</style></head>
+<body class="ws nl-doc">
+  <header class="ws-head"><div class="eyebrow">The Madewell Daily · Worksheet</div>
+    <h1>Magnetic Forces</h1><div class="sub">Week 2 · Lesson 5 — Magnetic Forces · Ms. Madewell · Room 501</div>
+    <div class="ws-id"><input id="last" placeholder="Last name"><input id="first" placeholder="First name"><input id="period" placeholder="Period"></div>
+  </header>
+  <section class="ws-sec" data-phase="check" data-kind="check"><h2>Check before the sim</h2><div class="q" data-key="c73091f191aea41d6367765fbdc292695b76b61ad0f9cb45435830e09a579a9c" data-ref="n1" data-type="dropdown" data-points="1"><p class="q-prompt">Two NORTH poles brought together will…</p><select class="q-input"><option value="">— choose —</option><option>push apart</option><option>pull together</option><option>do nothing</option></select><span class="q-mark" aria-live="polite"></span><div class="q-reveal" hidden>✓ <b>push apart</b> — Like poles repel — N and N face off and shove away from each other, just as two positive charges push apart.</div></div>
+<div class="q" data-key="1230f7735c59de0bb4cb09de0382809effaef92e26d299e44fbae99643fd668c" data-ref="n2" data-type="mc" data-points="1"><p class="q-prompt">Will a magnet stick to an aluminum foil ball?</p><div class="q-opts"><label><input type="radio" name="n2" value="Yes — all metals are magnetic">Yes — all metals are magnetic</label><label><input type="radio" name="n2" value="No — aluminum is not attracted to magnets">No — aluminum is not attracted to magnets</label><label><input type="radio" name="n2" value="Yes — everything metal sticks to a magnet">Yes — everything metal sticks to a magnet</label><label><input type="radio" name="n2" value="No — the magnet is too weak">No — the magnet is too weak</label></div><span class="q-mark" aria-live="polite"></span><div class="q-reveal" hidden>✓ <b>No — aluminum is not attracted to magnets</b> — Magnets attract iron and steel. Aluminum is a metal, but it has no iron — so the magnet shrugs right past it. 'All metals are magnetic' is the classic wrong idea; only iron and steel answer the call.</div></div>
+<div class="q" data-key="fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa" data-ref="n3" data-type="truefalse" data-points="1"><p class="q-prompt">Magnetic force requires the magnet to physically touch the object before it can pull.</p><div class="q-opts"><label><input type="radio" name="n3" value="true">True</label><label><input type="radio" name="n3" value="false">False</label></div><span class="q-mark" aria-live="polite"></span><div class="q-reveal" hidden>✓ <b>false</b> — Magnetic force is a noncontact force — it acts across empty space, exactly like electric force. You can feel the pull before the magnet ever touches the steel.</div></div><button type="button" class="ws-reveal">Go over the answers ▸</button></section>
+<section class="ws-sec" data-phase="we_do" data-kind="sim_predict"><h2>Magnet &amp; Compass Predictions</h2><div class="q" data-key="f4aa1c6a0e64b9a171c4baefc207d48fd7ee9d9fcfcda81664fc5c8dc11922e2" data-ref="p1" data-type="dropdown" data-points="1"><p class="q-prompt">In the sim you drag a N pole toward another N pole. The second magnet will…</p><select class="q-input"><option value="">— choose —</option><option>move away (repel)</option><option>move closer (attract)</option><option>stay put</option></select><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="36d3b37883774420d0b9baf4dc344c0906d7918e8d18ca7f99236f5a1835e10e" data-ref="p2" data-type="dropdown" data-points="1"><p class="q-prompt">You flip the second magnet so the S pole faces the first magnet's N pole. Now the second magnet will…</p><select class="q-input"><option value="">— choose —</option><option>move away (repel)</option><option>move closer (attract)</option><option>stay put</option></select><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="cbd3bf11e88c2cbd9e59fc87cfe9745390837c8a1e6b9520436a086c9635800e" data-ref="p3" data-type="dropdown" data-points="1"><p class="q-prompt">You place a steel paper clip near the N pole. The clip will…</p><select class="q-input"><option value="">— choose —</option><option>be attracted to the magnet</option><option>be repelled by the magnet</option><option>be unaffected</option></select><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="dfd54cf2d535e3447cb4e9171e9d486017faff1a986dc185534ecad3cfb3d917" data-ref="p4" data-type="dropdown" data-points="1"><p class="q-prompt">You place a copper penny near the N pole. The penny will…</p><select class="q-input"><option value="">— choose —</option><option>be attracted to the magnet</option><option>be repelled by the magnet</option><option>be unaffected</option></select><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b" data-ref="p5" data-type="truefalse" data-points="1"><p class="q-prompt">The compass needle in the sim swivels to line up with the magnet's field lines even when the bar magnet is NOT touching it.</p><div class="q-opts"><label><input type="radio" name="p5" value="true">True</label><label><input type="radio" name="p5" value="false">False</label></div><span class="q-mark" aria-live="polite"></span></div><div class="ws-sim"><iframe src="sims/magnet-and-compass_all.html" title="Magnet and Compass" loading="lazy"
+    style="width:100%;height:520px;border:1px solid #cfd4df;border-radius:8px"></iframe>
+    <p class="note">Drag the charges and the charge sliders — predict <em>before</em> you drag.</p></div></section>
+<section class="ws-sec" data-phase="you_do" data-kind="practice"><h2>Will It Stick?</h2><div class="q" data-key="bb303fdcb12ae2e68b67a7c6101180e006a8bfc6ebac62f43c509b0a3f86caa3" data-ref="q1" data-type="mc" data-points="1"><p class="q-prompt">Which list contains ONLY materials that a magnet will attract?</p><div class="q-opts"><label><input type="radio" name="q1" value="iron nail, steel screw, steel can">iron nail, steel screw, steel can</label><label><input type="radio" name="q1" value="aluminum foil, copper wire, steel screw">aluminum foil, copper wire, steel screw</label><label><input type="radio" name="q1" value="plastic button, iron nail, copper coin">plastic button, iron nail, copper coin</label><label><input type="radio" name="q1" value="aluminum can, steel can, iron nail">aluminum can, steel can, iron nail</label></div><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="9f06d62229c018fa690d78ed83f30b241188ce7f4fdc406a2ef7d92fa40a47d8" data-ref="q2" data-type="dropdown" data-points="1"><p class="q-prompt">A horseshoe magnet has its two N poles facing each other on a second magnet's two N poles. The result is…</p><select class="q-input"><option value="">— choose —</option><option>strong repulsion</option><option>strong attraction</option><option>no interaction</option></select><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-ref="q3" data-type="short" data-points="4"><p class="q-prompt">In today's lab you tested objects to see which ones stick to the magnet. Name ONE object that stuck and ONE that did not. For EACH, explain WHY using what you know about magnetic force and materials.</p><textarea class="q-input q-short" placeholder="Your answer…"></textarea></div></section>
+<section class="ws-sec" data-phase="exit" data-kind="exit"><h2>Exit Ticket</h2><div class="q" data-key="026fa3219c6fc056da3dcd822d42eedad139fd5cd67d4733cea9ee224549e05e" data-ref="x1" data-type="mc" data-points="1"><p class="q-prompt">Exit: a magnet's S pole is brought near another magnet's S pole. They will…</p><div class="q-opts"><label><input type="radio" name="x1" value="attract — opposite ends always pull">attract — opposite ends always pull</label><label><input type="radio" name="x1" value="repel — like poles push apart">repel — like poles push apart</label><label><input type="radio" name="x1" value="attract — south poles are always positive">attract — south poles are always positive</label><label><input type="radio" name="x1" value="do nothing — only N poles interact">do nothing — only N poles interact</label></div><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="2554048396b98d1a4bdbff9a74b790bec15dc48e849b29d070f5f168b7e20099" data-ref="x2" data-type="dropdown" data-points="1"><p class="q-prompt">Exit: magnetic force is classified as a noncontact force because…</p><select class="q-input"><option value="">— choose —</option><option>it can push or pull without the objects touching</option><option>it only works on metals</option><option>it gets stronger the farther away you are</option><option>it requires electricity to work</option></select><span class="q-mark" aria-live="polite"></span></div></section>
+  <footer class="ws-foot"><button id="download">⬇ Download my work</button>
+    <p class="note">No server, no Wi-Fi — a Markdown file downloads. Upload it to Canvas.</p></footer>
+  <script>
+    const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    const Q = s => JSON.stringify(s ?? '');
+    window.__filename = student => "W2L5 Magnetic Forces — {last}, {first}.md"
+      .replace('{last}', (student.split(', ')[0]||'')).replace('{first}', (student.split(', ')[1]||''))
+      .replace(/[/:]/g,'-').replace(/\s+/g,' ').trim();
+    window.__FM = {"cssclasses":["nl-doc"],"tags":["worksheet","science-7","submission"],"course":"science-7","lesson":"Week 2 · Lesson 5 — Magnetic Forces","week":2,"day":5,"date":"2026-08-07","teacher":"Ms. Madewell"}; window.__LESSON = "Week 2 · Lesson 5 — Magnetic Forces";
+    window.__buildMarkdown = a => (function buildMarkdown({ student, period, score, score_max, fm_defaults, rows, shortAnswers, submitted, lesson }) {
+  // Local helpers — must stay self-contained (this function is stringified into the browser).
+  const mdCell = s => String(s ?? '').replace(/\|/g, '\\|').replace(/\n+/g, ' ');
+  const mdText = s => String(s ?? '');
+  const fm = ['---'];
+  for (const [k, v] of Object.entries(fm_defaults || {})) {
+    if (Array.isArray(v)) { fm.push(`${k}:`); v.forEach(x => fm.push(`  - ${x}`)); }
+    else fm.push(`${k}: ${typeof v === 'number' ? v : Q(v)}`);
+  }
+  fm.push(`student: ${Q(student)}`, `period: ${Q(period)}`, `score: ${score}`, `score_max: ${score_max}`,
+          `submitted: ${Q(submitted)}`, '---', '');
+  const tableHdr = ['## Answers', '', '| # | Question | Your answer | ✓ |', '|---|---|---|---|'];
+  const tableRows = (rows || []).map(r => `| ${r.n} | ${mdCell(r.prompt)} | ${mdCell(r.answer) || '—'} | ${r.correct ? '✓' : '✗'} |`);
+  const shorts = (shortAnswers || []).flatMap(s => ['', `## ${mdText(s.prompt)}`, '',
+    (s.text || '_(blank)_').split('\n').map(l => '> ' + l).join('\n')]);
+  const body = [
+    `# ${mdText(lesson || 'Worksheet')}`,
+    `**${mdText(student)}** · Period ${mdText(period)}`, '',
+    `> **Auto-score (closed): ${score}/${score_max}** — short answer(s) below for Ms. Madewell.`, '',
+    ...tableHdr, ...tableRows, ...shorts, '',
+    '---', '*Generated in your browser — no server. The Madewell Daily.*', ''
+  ];
+  return fm.join('\n') + body.join('\n');
+})({ ...a, fm_defaults: window.__FM, lesson: window.__LESSON });
+  </script>
+  <script>(() => {
+  const norm = s => (s || '').toLowerCase().trim();
+  async function sha256(s) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(norm(s)));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  function selected(q) {
+    const sel = q.querySelector('select.q-input'); if (sel) return sel.value;
+    const r = q.querySelector('input[type=radio]:checked'); if (r) return r.value;
+    const t = q.querySelector('textarea.q-short'); if (t) return t.value;
+    return '';
+  }
+  async function check(q) {
+    const key = q.dataset.key; if (!key) return null;          // open question
+    const val = selected(q); if (!val) return null;
+    const ok = (await sha256(val)) === key;
+    const mark = q.querySelector('.q-mark');
+    if (mark) { mark.textContent = ok ? '✓' : '✗'; mark.className = 'q-mark ' + (ok ? 'is-ok' : 'is-no'); }
+    return ok;
+  }
+  const qs = () => [...document.querySelectorAll('.q')];
+  document.addEventListener('change', e => { const q = e.target.closest('.q'); if (q && q.dataset.key) check(q); });
+
+  // "Go over the answers" — reveal the check section's correct answers + why (after they commit).
+  document.addEventListener('click', e => {
+    if (e.target.classList && e.target.classList.contains('ws-reveal')) {
+      const sec = e.target.closest('.ws-sec');
+      if (sec) sec.querySelectorAll('.q-reveal').forEach(r => { r.hidden = false; });
+      e.target.textContent = 'Answers shown ✓'; e.target.disabled = true;
+    }
+  });
+
+  document.getElementById('download').addEventListener('click', async () => {
+    const last = document.getElementById('last').value.trim();
+    const first = document.getElementById('first').value.trim();
+    const period = document.getElementById('period').value.trim() || '—';
+    const student = (last && first) ? `${last}, ${first}` : (last || first || 'Unnamed');
+    let score = 0, max = 0, n = 0; const rows = [], shorts = [];
+    for (const q of qs()) {
+      const val = selected(q), prompt = q.querySelector('.q-prompt').textContent;
+      if (q.dataset.type === 'short') { shorts.push({ prompt, text: val }); continue; }
+      max++; n++; const ok = await check(q); if (ok) score++;
+      rows.push({ n, prompt, answer: val, correct: !!ok });
+    }
+    const md = window.__buildMarkdown({ student, period, score, score_max: max, rows,
+      shortAnswers: shorts, submitted: new Date().toISOString() });
+    const fname = window.__filename(student);
+    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = fname;
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 0);
+  });
+})();
+</script>
+</body></html>
