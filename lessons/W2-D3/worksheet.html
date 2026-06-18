@@ -1,0 +1,360 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Electric Forces — analyze your data — Worksheet</title>
+<style>/* ws.css — student-facing worksheet, light theme */
+:root {
+  --ink: #181b22;
+  --mist: #5a606c;
+  --line: #cfd4df;
+  --gold: #8a5a00;
+  --cyan: #0a6373;
+  --ok: #1c7a45;
+  --no: #b00020;
+  --bg-page: #eef1f6;
+  --bg-sheet: #fff;
+  --radius: 8px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, Inter, system-ui, sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--bg-page);
+  margin: 0;
+  padding: 28px 16px 48px;
+  line-height: 1.5;
+}
+
+/* Page container */
+.ws {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--bg-sheet);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 28px 32px 36px;
+}
+
+/* ── Header ── */
+.ws-head { margin-bottom: 24px; }
+
+.eyebrow {
+  font: 600 11px/1 ui-monospace, monospace;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.ws-head h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.sub {
+  font-size: 13px;
+  color: var(--mist);
+  margin-bottom: 18px;
+}
+
+/* Name/period row */
+.ws-id {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ws-id input {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* ── Sections ── */
+.ws-sec {
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+  padding-top: 18px;
+}
+
+.ws-sec h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin: 0 0 14px;
+}
+
+/* ── Question blocks ── */
+.q {
+  margin-bottom: 18px;
+}
+
+.q-prompt {
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+/* ── Inputs ── */
+input, select, textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fbfcfe;
+  color: var(--ink);
+  transition: border-color .15s;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+}
+
+textarea, .q-short {
+  min-height: 88px;
+  resize: vertical;
+}
+
+/* Radio/checkbox option lists */
+.q-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.q-opts label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.q-opts input[type=radio] {
+  width: auto;
+  flex-shrink: 0;
+}
+
+/* Correct/incorrect markers */
+.q-mark {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 5px;
+  min-height: 1em;
+}
+
+.q-mark.is-ok { color: var(--ok); }
+.q-mark.is-no { color: var(--no); }
+
+/* ── Sim embed ── */
+.ws-sim {
+  margin: 18px 0;
+}
+
+.ws-sim iframe {
+  width: 100%;
+  height: 520px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  display: block;
+}
+
+/* ── Footer ── */
+.ws-foot {
+  border-top: 1px solid var(--line);
+  margin-top: 28px;
+  padding-top: 20px;
+}
+
+#download {
+  font: 600 15px/1 inherit;
+  background: var(--ink);
+  color: #fff;
+  border: 0;
+  border-radius: var(--radius);
+  padding: 13px 24px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+#download:hover { background: #000; }
+
+.note {
+  font-size: 12px;
+  color: var(--mist);
+  margin-top: 10px;
+}
+
+/* ── Print ── */
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  .ws {
+    max-width: 100%;
+    border: none;
+    border-radius: 0;
+    padding: 16px 24px;
+    box-shadow: none;
+  }
+
+  /* Hide interactive/digital-only elements */
+  #download { display: none; }
+  .q-mark { display: none; }
+  .ws-sim { display: none; }
+  .note { display: none; }
+
+  /* Keep prompts and inputs visible as blank lines */
+  .q-prompt { font-weight: 600; }
+
+  input, select, textarea {
+    border: none;
+    border-bottom: 1px solid #888;
+    border-radius: 0;
+    background: transparent;
+    padding: 4px 2px;
+  }
+
+  textarea, .q-short {
+    min-height: 72px;
+  }
+
+  .ws-sec { break-inside: avoid; }
+  .q { break-inside: avoid; }
+}
+
+/* Check-before-the-sim — reveal the correct answer + why after they commit */
+.q-reveal{margin:8px 0 2px;padding:8px 11px;border-left:3px solid #1c7a45;background:#eaf6ee;border-radius:4px;font-size:13.5px;line-height:1.45;color:#14532d}
+.q-reveal b{color:#0f3d22}
+.ws-reveal{margin:12px 0 4px;font-family:inherit;font-weight:600;font-size:14px;background:#0a6373;color:#fff;border:0;border-radius:7px;padding:9px 16px;cursor:pointer}
+.ws-reveal:hover{background:#0c7689}
+.ws-reveal:disabled{background:#cfd4df;color:#5a606c;cursor:default}
+@media print{ .ws-reveal{display:none} .q-reveal{display:none} }
+</style></head>
+<body class="ws nl-doc">
+  <header class="ws-head"><div class="eyebrow">The Madewell Daily · Worksheet</div>
+    <h1>Electric Forces — analyze your data</h1><div class="sub">Week 2 · Lesson 3 — Electric Forces: Analyze Your Data · Ms. Madewell · Room 501</div>
+    <div class="ws-id"><input id="last" placeholder="Last name"><input id="first" placeholder="First name"><input id="period" placeholder="Period"></div>
+  </header>
+  <section class="ws-sec" data-phase="check" data-kind="check"><h2>Check before the sim</h2><div class="q" data-key="4f6d8f2cf4f2be262bc2ac6444b39f0272115b2315fda74e7db70e5f093b9779" data-ref="n1" data-type="dropdown" data-points="1"><p class="q-prompt">A data table shows: small charge → 2 N; medium charge → 5 N; large charge → 9 N. What trend does this show?</p><select class="q-input"><option value="">— choose —</option><option>as charge increases, force increases</option><option>as charge increases, force decreases</option><option>charge has no effect on force</option></select><span class="q-mark" aria-live="polite"></span><div class="q-reveal" hidden>✓ <b>as charge increases, force increases</b> — Each row has more charge and a bigger force number — the data goes UP together, so charge and force rise together.</div></div>
+<div class="q" data-key="4aa7dc64c10baf64c9c613afb6ad71e277ec3e8df9537bf561a1cb686b3a12b1" data-ref="n2" data-type="dropdown" data-points="1"><p class="q-prompt">A data table shows: 1 cm apart → 8 N; 3 cm apart → 3 N; 5 cm apart → 1 N. What trend does this show?</p><select class="q-input"><option value="">— choose —</option><option>as distance increases, force increases</option><option>as distance increases, force decreases</option><option>distance has no effect on force</option></select><span class="q-mark" aria-live="polite"></span><div class="q-reveal" hidden>✓ <b>as distance increases, force decreases</b> — Each row has more distance and a smaller force number — as the gap grows, the force shrinks. Distance and force move in opposite directions.</div></div>
+<div class="q" data-key="fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa" data-ref="n3" data-type="truefalse" data-points="1"><p class="q-prompt">A conclusion that says 'I think charge matters' is stronger than one that says 'When charge doubled, force doubled in all 4 trials.'</p><div class="q-opts"><label><input type="radio" name="n3" value="true">True</label><label><input type="radio" name="n3" value="false">False</label></div><span class="q-mark" aria-live="polite"></span><div class="q-reveal" hidden>✓ <b>false</b> — Guesses don't win arguments — specific numbers from your own trials do. The second sentence is a real evidence-backed conclusion.</div></div><button type="button" class="ws-reveal">Go over the answers ▸</button></section>
+<section class="ws-sec" data-phase="we_do" data-kind="sim_predict"><h2>Read the Trends</h2><div class="q" data-key="680b7224788be95f9bf92004f5fca4601361bd74b2b18bf3b8d764c264248356" data-ref="p1" data-type="dropdown" data-points="1"><p class="q-prompt">You run the sim with charge = 1 μC and distance = 2 m. Force reads 2.2 N. You then increase charge to 2 μC (same distance). The data says force will be…</p><select class="q-input"><option value="">— choose —</option><option>higher than 2.2 N</option><option>lower than 2.2 N</option><option>still 2.2 N</option></select><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="2203e25666c9e7dd19161e14fe6473436327e8dc6d8bc4758eb50907440e39c2" data-ref="p2" data-type="dropdown" data-points="1"><p class="q-prompt">Sim trial: distance = 1 m → force = 9.0 N; distance = 2 m → force = 2.2 N; distance = 3 m → force = 1.0 N. The data shows that doubling the distance…</p><select class="q-input"><option value="">— choose —</option><option>cuts the force by less than half</option><option>cuts the force by more than half</option><option>leaves the force unchanged</option></select><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="7063c8b2cb36a328f8cdb4dba8724613f592ea0a0b8e65dce4b5399e258a5cf0" data-ref="p3" data-type="dropdown" data-points="1"><p class="q-prompt">In your sim results, every time you moved the charges closer, the force reading went UP. That is evidence that distance makes force…</p><select class="q-input"><option value="">— choose —</option><option>stronger when smaller</option><option>stronger when larger</option><option>unchanged</option></select><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="0b24f09b372ceae19bbfca18d732b4ef413ae88ac6a65454447b05bfa3aee421" data-ref="p4" data-type="dropdown" data-points="1"><p class="q-prompt">You triple the charge while keeping distance the same. Based on the data pattern, the force should…</p><select class="q-input"><option value="">— choose —</option><option>increase by a large amount</option><option>decrease by a large amount</option><option>stay about the same</option></select><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b" data-ref="p5" data-type="truefalse" data-points="1"><p class="q-prompt">If the sim shows force = 4 N at 2 m and force = 1 N at 4 m, that data supports the claim that distance and force move in OPPOSITE directions.</p><div class="q-opts"><label><input type="radio" name="p5" value="true">True</label><label><input type="radio" name="p5" value="false">False</label></div><span class="q-mark" aria-live="polite"></span></div><div class="ws-sim"><iframe src="sims/coulombs-law_all.html" title="Coulomb's Law" loading="lazy"
+    style="width:100%;height:520px;border:1px solid #cfd4df;border-radius:8px"></iframe>
+    <p class="note">Drag the charges and the charge sliders — predict <em>before</em> you drag.</p></div></section>
+<section class="ws-sec" data-phase="you_do" data-kind="practice"><h2>Make Your Case</h2><div class="q" data-key="5e17bbe952077a84e2c5cf2046e0afc24ad1e18d944a9385e7c77df8fe9e924f" data-ref="q1" data-type="dropdown" data-points="1"><p class="q-prompt">Use the data table below to answer.
+
+| Trial | Charge (μC) | Distance (m) | Force (N) |
+|-------|-------------|--------------|----------|
+| 1     | 1           | 3            | 1.0       |
+| 2     | 2           | 3            | 4.0       |
+| 3     | 3           | 3            | 9.0       |
+
+What does this table prove about charge?</p><select class="q-input"><option value="">— choose —</option><option>increasing charge increases force — and by a lot</option><option>increasing charge decreases force</option><option>charge has no effect when distance stays the same</option></select><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-ref="q2" data-type="short" data-points="4"><p class="q-prompt">Write ONE sentence that states a conclusion from your lab data. Your sentence must include: (1) which factor you are talking about, (2) what happened to the force, and (3) a specific number or trial from your data.</p><textarea class="q-input q-short" placeholder="Your answer…"></textarea></div>
+<div class="q" data-key="c7e6fa19950521cf9061ba6adaceec2f3a19ca2af897b5ac1c6ef181d01ce813" data-ref="q3" data-type="mc" data-points="1"><p class="q-prompt">Which statement sounds most like a real scientist's conclusion?</p><div class="q-opts"><label><input type="radio" name="q3" value="I think charge makes the force stronger.">I think charge makes the force stronger.</label><label><input type="radio" name="q3" value="The sim showed bigger numbers when charge went up.">The sim showed bigger numbers when charge went up.</label><label><input type="radio" name="q3" value="When charge increased from 1 to 3 μC at 3 m, force rose from 1.0 to 9.0 N — charge has a large effect on electric force.">When charge increased from 1 to 3 μC at 3 m, force rose from 1.0 to 9.0 N — charge has a large effect on electric force.</label><label><input type="radio" name="q3" value="Distance and charge both matter.">Distance and charge both matter.</label></div><span class="q-mark" aria-live="polite"></span></div></section>
+<section class="ws-sec" data-phase="exit" data-kind="exit"><h2>Exit Ticket</h2><div class="q" data-key="3bab06ccf30cdbfa70e261509247157a0bb65c7ae0af9ad2ca31e36c2f17561f" data-ref="x1" data-type="dropdown" data-points="1"><p class="q-prompt">Exit: which trend does the charge data show?</p><select class="q-input"><option value="">— choose —</option><option>charge ↑ → force ↑</option><option>charge ↑ → force ↓</option><option>charge has no effect</option></select><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="b3cb094cb4e378caa188de5358e6dffaabb51298d542311f5dae488ad800740e" data-ref="x2" data-type="mc" data-points="1"><p class="q-prompt">Exit: what must a conclusion include that a guess does NOT?</p><div class="q-opts"><label><input type="radio" name="x2" value="a color-coded chart">a color-coded chart</label><label><input type="radio" name="x2" value="specific evidence from your data">specific evidence from your data</label><label><input type="radio" name="x2" value="a second opinion from a partner">a second opinion from a partner</label><label><input type="radio" name="x2" value="a prediction about tomorrow">a prediction about tomorrow</label></div><span class="q-mark" aria-live="polite"></span></div></section>
+  <footer class="ws-foot"><button id="download">⬇ Download my work</button>
+    <p class="note">No server, no Wi-Fi — a Markdown file downloads. Upload it to Canvas.</p></footer>
+  <script>
+    const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    const Q = s => JSON.stringify(s ?? '');
+    window.__filename = student => "W2L3 Electric Forces Analyze — {last}, {first}.md"
+      .replace('{last}', (student.split(', ')[0]||'')).replace('{first}', (student.split(', ')[1]||''))
+      .replace(/[/:]/g,'-').replace(/\s+/g,' ').trim();
+    window.__FM = {"cssclasses":["nl-doc"],"tags":["worksheet","science-7","submission"],"course":"science-7","lesson":"Week 2 · Lesson 3 — Electric Forces: Analyze Your Data","week":2,"day":3,"date":"2026-08-05","teacher":"Ms. Madewell"}; window.__LESSON = "Week 2 · Lesson 3 — Electric Forces: Analyze Your Data";
+    window.__buildMarkdown = a => (function buildMarkdown({ student, period, score, score_max, fm_defaults, rows, shortAnswers, submitted, lesson }) {
+  // Local helpers — must stay self-contained (this function is stringified into the browser).
+  const mdCell = s => String(s ?? '').replace(/\|/g, '\\|').replace(/\n+/g, ' ');
+  const mdText = s => String(s ?? '');
+  const fm = ['---'];
+  for (const [k, v] of Object.entries(fm_defaults || {})) {
+    if (Array.isArray(v)) { fm.push(`${k}:`); v.forEach(x => fm.push(`  - ${x}`)); }
+    else fm.push(`${k}: ${typeof v === 'number' ? v : Q(v)}`);
+  }
+  fm.push(`student: ${Q(student)}`, `period: ${Q(period)}`, `score: ${score}`, `score_max: ${score_max}`,
+          `submitted: ${Q(submitted)}`, '---', '');
+  const tableHdr = ['## Answers', '', '| # | Question | Your answer | ✓ |', '|---|---|---|---|'];
+  const tableRows = (rows || []).map(r => `| ${r.n} | ${mdCell(r.prompt)} | ${mdCell(r.answer) || '—'} | ${r.correct ? '✓' : '✗'} |`);
+  const shorts = (shortAnswers || []).flatMap(s => ['', `## ${mdText(s.prompt)}`, '',
+    (s.text || '_(blank)_').split('\n').map(l => '> ' + l).join('\n')]);
+  const body = [
+    `# ${mdText(lesson || 'Worksheet')}`,
+    `**${mdText(student)}** · Period ${mdText(period)}`, '',
+    `> **Auto-score (closed): ${score}/${score_max}** — short answer(s) below for Ms. Madewell.`, '',
+    ...tableHdr, ...tableRows, ...shorts, '',
+    '---', '*Generated in your browser — no server. The Madewell Daily.*', ''
+  ];
+  return fm.join('\n') + body.join('\n');
+})({ ...a, fm_defaults: window.__FM, lesson: window.__LESSON });
+  </script>
+  <script>(() => {
+  const norm = s => (s || '').toLowerCase().trim();
+  async function sha256(s) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(norm(s)));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  function selected(q) {
+    const sel = q.querySelector('select.q-input'); if (sel) return sel.value;
+    const r = q.querySelector('input[type=radio]:checked'); if (r) return r.value;
+    const t = q.querySelector('textarea.q-short'); if (t) return t.value;
+    return '';
+  }
+  async function check(q) {
+    const key = q.dataset.key; if (!key) return null;          // open question
+    const val = selected(q); if (!val) return null;
+    const ok = (await sha256(val)) === key;
+    const mark = q.querySelector('.q-mark');
+    if (mark) { mark.textContent = ok ? '✓' : '✗'; mark.className = 'q-mark ' + (ok ? 'is-ok' : 'is-no'); }
+    return ok;
+  }
+  const qs = () => [...document.querySelectorAll('.q')];
+  document.addEventListener('change', e => { const q = e.target.closest('.q'); if (q && q.dataset.key) check(q); });
+
+  // "Go over the answers" — reveal the check section's correct answers + why (after they commit).
+  document.addEventListener('click', e => {
+    if (e.target.classList && e.target.classList.contains('ws-reveal')) {
+      const sec = e.target.closest('.ws-sec');
+      if (sec) sec.querySelectorAll('.q-reveal').forEach(r => { r.hidden = false; });
+      e.target.textContent = 'Answers shown ✓'; e.target.disabled = true;
+    }
+  });
+
+  document.getElementById('download').addEventListener('click', async () => {
+    const last = document.getElementById('last').value.trim();
+    const first = document.getElementById('first').value.trim();
+    const period = document.getElementById('period').value.trim() || '—';
+    const student = (last && first) ? `${last}, ${first}` : (last || first || 'Unnamed');
+    let score = 0, max = 0, n = 0; const rows = [], shorts = [];
+    for (const q of qs()) {
+      const val = selected(q), prompt = q.querySelector('.q-prompt').textContent;
+      if (q.dataset.type === 'short') { shorts.push({ prompt, text: val }); continue; }
+      max++; n++; const ok = await check(q); if (ok) score++;
+      rows.push({ n, prompt, answer: val, correct: !!ok });
+    }
+    const md = window.__buildMarkdown({ student, period, score, score_max: max, rows,
+      shortAnswers: shorts, submitted: new Date().toISOString() });
+    const fname = window.__filename(student);
+    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = fname;
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 0);
+  });
+})();
+</script>
+</body></html>
