@@ -1,0 +1,352 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Electric Forces — apply both factors — Worksheet</title>
+<style>/* ws.css — student-facing worksheet, light theme */
+:root {
+  --ink: #181b22;
+  --mist: #5a606c;
+  --line: #cfd4df;
+  --gold: #8a5a00;
+  --cyan: #0a6373;
+  --ok: #1c7a45;
+  --no: #b00020;
+  --bg-page: #eef1f6;
+  --bg-sheet: #fff;
+  --radius: 8px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, Inter, system-ui, sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--bg-page);
+  margin: 0;
+  padding: 28px 16px 48px;
+  line-height: 1.5;
+}
+
+/* Page container */
+.ws {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--bg-sheet);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 28px 32px 36px;
+}
+
+/* ── Header ── */
+.ws-head { margin-bottom: 24px; }
+
+.eyebrow {
+  font: 600 11px/1 ui-monospace, monospace;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.ws-head h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.sub {
+  font-size: 13px;
+  color: var(--mist);
+  margin-bottom: 18px;
+}
+
+/* Name/period row */
+.ws-id {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ws-id input {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* ── Sections ── */
+.ws-sec {
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+  padding-top: 18px;
+}
+
+.ws-sec h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin: 0 0 14px;
+}
+
+/* ── Question blocks ── */
+.q {
+  margin-bottom: 18px;
+}
+
+.q-prompt {
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+/* ── Inputs ── */
+input, select, textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fbfcfe;
+  color: var(--ink);
+  transition: border-color .15s;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+}
+
+textarea, .q-short {
+  min-height: 88px;
+  resize: vertical;
+}
+
+/* Radio/checkbox option lists */
+.q-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.q-opts label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.q-opts input[type=radio] {
+  width: auto;
+  flex-shrink: 0;
+}
+
+/* Correct/incorrect markers */
+.q-mark {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 5px;
+  min-height: 1em;
+}
+
+.q-mark.is-ok { color: var(--ok); }
+.q-mark.is-no { color: var(--no); }
+
+/* ── Sim embed ── */
+.ws-sim {
+  margin: 18px 0;
+}
+
+.ws-sim iframe {
+  width: 100%;
+  height: 520px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  display: block;
+}
+
+/* ── Footer ── */
+.ws-foot {
+  border-top: 1px solid var(--line);
+  margin-top: 28px;
+  padding-top: 20px;
+}
+
+#download {
+  font: 600 15px/1 inherit;
+  background: var(--ink);
+  color: #fff;
+  border: 0;
+  border-radius: var(--radius);
+  padding: 13px 24px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+#download:hover { background: #000; }
+
+.note {
+  font-size: 12px;
+  color: var(--mist);
+  margin-top: 10px;
+}
+
+/* ── Print ── */
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  .ws {
+    max-width: 100%;
+    border: none;
+    border-radius: 0;
+    padding: 16px 24px;
+    box-shadow: none;
+  }
+
+  /* Hide interactive/digital-only elements */
+  #download { display: none; }
+  .q-mark { display: none; }
+  .ws-sim { display: none; }
+  .note { display: none; }
+
+  /* Keep prompts and inputs visible as blank lines */
+  .q-prompt { font-weight: 600; }
+
+  input, select, textarea {
+    border: none;
+    border-bottom: 1px solid #888;
+    border-radius: 0;
+    background: transparent;
+    padding: 4px 2px;
+  }
+
+  textarea, .q-short {
+    min-height: 72px;
+  }
+
+  .ws-sec { break-inside: avoid; }
+  .q { break-inside: avoid; }
+}
+
+/* Check-before-the-sim — reveal the correct answer + why after they commit */
+.q-reveal{margin:8px 0 2px;padding:8px 11px;border-left:3px solid #1c7a45;background:#eaf6ee;border-radius:4px;font-size:13.5px;line-height:1.45;color:#14532d}
+.q-reveal b{color:#0f3d22}
+.ws-reveal{margin:12px 0 4px;font-family:inherit;font-weight:600;font-size:14px;background:#0a6373;color:#fff;border:0;border-radius:7px;padding:9px 16px;cursor:pointer}
+.ws-reveal:hover{background:#0c7689}
+.ws-reveal:disabled{background:#cfd4df;color:#5a606c;cursor:default}
+@media print{ .ws-reveal{display:none} .q-reveal{display:none} }
+</style></head>
+<body class="ws nl-doc">
+  <header class="ws-head"><div class="eyebrow">The Madewell Daily · Worksheet</div>
+    <h1>Electric Forces — apply both factors</h1><div class="sub">Week 2 · Lesson 2 — Electric Forces Apply · Ms. Madewell · Room 501</div>
+    <div class="ws-id"><input id="last" placeholder="Last name"><input id="first" placeholder="First name"><input id="period" placeholder="Period"></div>
+  </header>
+  <section class="ws-sec" data-phase="check" data-kind="check"><h2>Check before the sim</h2><div class="q" data-key="4b445a04147e4bd24b973bda59e4dcc12ebddb5b98003ce8c5ae68ab2918163d" data-ref="n1" data-type="dropdown" data-points="1"><p class="q-prompt">The soot specks in the smokestack are given a negative charge by the wire. The nearby plate is positive. The force on each speck is…</p><select class="q-input"><option value="">— choose —</option><option>a pull toward the plate</option><option>a push away from the plate</option><option>zero — they don't touch</option></select><span class="q-mark" aria-live="polite"></span><div class="q-reveal" hidden>✓ <b>a pull toward the plate</b> — Opposite charges attract — the negative soot and positive plate pull each other, no contact needed.</div></div>
+<div class="q" data-key="106fd9a818d29fb29bc13c6be0a24f6abe0597f43afa1f3904c0019bdf5c9139" data-ref="n2" data-type="dropdown" data-points="1"><p class="q-prompt">Engineers crank the wire voltage way up, putting MORE charge on each soot speck. The pull toward the plate gets…</p><select class="q-input"><option value="">— choose —</option><option>stronger</option><option>weaker</option><option>the same</option></select><span class="q-mark" aria-live="polite"></span><div class="q-reveal" hidden>✓ <b>stronger</b> — More charge turns Dial 1 up — a bigger charge means a bigger electric force, so the pull to the plate increases.</div></div>
+<div class="q" data-key="1cd8f4574b24fee8c8dae2da03d24c10ef2f4d8789b6d63472e71e626d8fb595" data-ref="n3" data-type="dropdown" data-points="1"><p class="q-prompt">A second smokestack is built with the collector plate twice as far from the wire. All else equal, the force pulling soot to that plate is…</p><select class="q-input"><option value="">— choose —</option><option>stronger than the first stack</option><option>weaker than the first stack</option><option>the same as the first stack</option></select><span class="q-mark" aria-live="polite"></span><div class="q-reveal" hidden>✓ <b>weaker than the first stack</b> — More distance turns Dial 2 the wrong way — spreading charges apart makes the force fade, so the farther plate pulls less.</div></div><button type="button" class="ws-reveal">Go over the answers ▸</button></section>
+<section class="ws-sec" data-phase="we_do" data-kind="sim_predict"><h2>Turn the Dials</h2><div class="q" data-key="106fd9a818d29fb29bc13c6be0a24f6abe0597f43afa1f3904c0019bdf5c9139" data-ref="p1" data-type="dropdown" data-points="1"><p class="q-prompt">In the sim, you double the charge on both spheres. The force reading is…</p><select class="q-input"><option value="">— choose —</option><option>stronger</option><option>weaker</option><option>the same</option></select><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="bcf47e35fc5fe9b78d1ce32a9b98b05adeb3e2aae129207ef29f5fdaeb290f93" data-ref="p2" data-type="dropdown" data-points="1"><p class="q-prompt">You slide the spheres farther apart in the sim. The force reading…</p><select class="q-input"><option value="">— choose —</option><option>goes up</option><option>goes down</option><option>stays flat</option></select><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="2b680ace1326c8a3d5d3a00cf44adcdb9f3e2719983589381f486ccd9ff0b07c" data-ref="p3" data-type="dropdown" data-points="1"><p class="q-prompt">You return the charges to the original values but halve the distance. The force is…</p><select class="q-input"><option value="">— choose —</option><option>stronger than original</option><option>weaker than original</option><option>the same as original</option></select><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa" data-ref="p4" data-type="truefalse" data-points="1"><p class="q-prompt">In the sim, a larger positive charge on one sphere and a larger negative charge on the other makes the force between them weaker.</p><div class="q-opts"><label><input type="radio" name="p4" value="true">True</label><label><input type="radio" name="p4" value="false">False</label></div><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="270c650c9e8c56242ea47a1b5298ad23c34539e1ab8a5fefd10a69e8b17792a6" data-ref="p5" data-type="dropdown" data-points="1"><p class="q-prompt">You increase charge AND increase distance at the same time. The net force compared to the start is…</p><select class="q-input"><option value="">— choose —</option><option>definitely stronger</option><option>definitely weaker</option><option>it depends on which change was bigger</option></select><span class="q-mark" aria-live="polite"></span></div><div class="ws-sim"><iframe src="sims/coulombs-law_all.html" title="Coulomb's Law" loading="lazy"
+    style="width:100%;height:520px;border:1px solid #cfd4df;border-radius:8px"></iframe>
+    <p class="note">Drag the charges and the charge sliders — predict <em>before</em> you drag.</p></div></section>
+<section class="ws-sec" data-phase="you_do" data-kind="practice"><h2>Smokestack Challenge</h2><div class="q" data-key="de4240a8d3561d5ec89e501ebd4889021110d404299b2cf68d6ec54bc95939e2" data-ref="q1" data-type="mc" data-points="1"><p class="q-prompt">Why does the electrostatic precipitator catch over 99% of soot? Pick the BEST explanation.</p><div class="q-opts"><label><input type="radio" name="q1" value="The soot particles are heavy and fall by gravity">The soot particles are heavy and fall by gravity</label><label><input type="radio" name="q1" value="The charged wire and opposite plate apply a strong electric pull to every charged speck">The charged wire and opposite plate apply a strong electric pull to every charged speck</label><label><input type="radio" name="q1" value="Hot air inside the stack pushes soot to the walls">Hot air inside the stack pushes soot to the walls</label><label><input type="radio" name="q1" value="The soot sticks because the plate is sticky">The soot sticks because the plate is sticky</label></div><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="567fb056112ff0bb795fb9284671bcd3708b7f02d1395123642640bd3a2c82db" data-ref="q2" data-type="dropdown" data-points="1"><p class="q-prompt">An engineer wants to improve the catch rate. Which change uses BOTH factors to increase the pull on soot?</p><select class="q-input"><option value="">— choose —</option><option>Increase the wire voltage AND move the plate closer</option><option>Decrease the wire voltage AND move the plate farther away</option><option>Increase the wire voltage AND move the plate farther away</option><option>Decrease the wire voltage AND move the plate closer</option></select><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-ref="q3" data-type="short" data-points="4"><p class="q-prompt">Look at your sim data from today. Pick ONE moment where you changed a dial and saw the force change. Describe what you changed, what happened to the force, and explain why — using the two-dial rule AND a connection to the smokestack.</p><textarea class="q-input q-short" placeholder="Your answer…"></textarea></div></section>
+<section class="ws-sec" data-phase="exit" data-kind="exit"><h2>Exit Ticket</h2><div class="q" data-key="c7abc26d0faf2d97ac7e31839a49cb05eb778d8bcac4c082ba5d59c0bf0ab140" data-ref="x1" data-type="mc" data-points="1"><p class="q-prompt">Exit: a soot speck has a stronger pull to the collector plate when…</p><div class="q-opts"><label><input type="radio" name="x1" value="it has more negative charge and the plate is close">it has more negative charge and the plate is close</label><label><input type="radio" name="x1" value="it has less negative charge and the plate is far">it has less negative charge and the plate is far</label><label><input type="radio" name="x1" value="it is uncharged and the plate is very close">it is uncharged and the plate is very close</label><label><input type="radio" name="x1" value="the plate is removed entirely">the plate is removed entirely</label></div><span class="q-mark" aria-live="polite"></span></div>
+<div class="q" data-key="adf8ca846ffdf03410a03cf607e3a101e4d2284ba3126059489d6eb4733d184c" data-ref="x2" data-type="dropdown" data-points="1"><p class="q-prompt">Exit: the two factors that let engineers tune the smokestack's pull are…</p><select class="q-input"><option value="">— choose —</option><option>amount of charge and distance</option><option>temperature and air speed</option><option>mass and gravity</option><option>color and texture</option></select><span class="q-mark" aria-live="polite"></span></div></section>
+  <footer class="ws-foot"><button id="download">⬇ Download my work</button>
+    <p class="note">No server, no Wi-Fi — a Markdown file downloads. Upload it to Canvas.</p></footer>
+  <script>
+    const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    const Q = s => JSON.stringify(s ?? '');
+    window.__filename = student => "W2L2 Electric Forces Apply — {last}, {first}.md"
+      .replace('{last}', (student.split(', ')[0]||'')).replace('{first}', (student.split(', ')[1]||''))
+      .replace(/[/:]/g,'-').replace(/\s+/g,' ').trim();
+    window.__FM = {"cssclasses":["nl-doc"],"tags":["worksheet","science-7","submission"],"course":"science-7","lesson":"Week 2 · Lesson 2 — Electric Forces Apply","week":2,"day":2,"date":"2026-08-04","teacher":"Ms. Madewell"}; window.__LESSON = "Week 2 · Lesson 2 — Electric Forces Apply";
+    window.__buildMarkdown = a => (function buildMarkdown({ student, period, score, score_max, fm_defaults, rows, shortAnswers, submitted, lesson }) {
+  // Local helpers — must stay self-contained (this function is stringified into the browser).
+  const mdCell = s => String(s ?? '').replace(/\|/g, '\\|').replace(/\n+/g, ' ');
+  const mdText = s => String(s ?? '');
+  const fm = ['---'];
+  for (const [k, v] of Object.entries(fm_defaults || {})) {
+    if (Array.isArray(v)) { fm.push(`${k}:`); v.forEach(x => fm.push(`  - ${x}`)); }
+    else fm.push(`${k}: ${typeof v === 'number' ? v : Q(v)}`);
+  }
+  fm.push(`student: ${Q(student)}`, `period: ${Q(period)}`, `score: ${score}`, `score_max: ${score_max}`,
+          `submitted: ${Q(submitted)}`, '---', '');
+  const tableHdr = ['## Answers', '', '| # | Question | Your answer | ✓ |', '|---|---|---|---|'];
+  const tableRows = (rows || []).map(r => `| ${r.n} | ${mdCell(r.prompt)} | ${mdCell(r.answer) || '—'} | ${r.correct ? '✓' : '✗'} |`);
+  const shorts = (shortAnswers || []).flatMap(s => ['', `## ${mdText(s.prompt)}`, '',
+    (s.text || '_(blank)_').split('\n').map(l => '> ' + l).join('\n')]);
+  const body = [
+    `# ${mdText(lesson || 'Worksheet')}`,
+    `**${mdText(student)}** · Period ${mdText(period)}`, '',
+    `> **Auto-score (closed): ${score}/${score_max}** — short answer(s) below for Ms. Madewell.`, '',
+    ...tableHdr, ...tableRows, ...shorts, '',
+    '---', '*Generated in your browser — no server. The Madewell Daily.*', ''
+  ];
+  return fm.join('\n') + body.join('\n');
+})({ ...a, fm_defaults: window.__FM, lesson: window.__LESSON });
+  </script>
+  <script>(() => {
+  const norm = s => (s || '').toLowerCase().trim();
+  async function sha256(s) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(norm(s)));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  function selected(q) {
+    const sel = q.querySelector('select.q-input'); if (sel) return sel.value;
+    const r = q.querySelector('input[type=radio]:checked'); if (r) return r.value;
+    const t = q.querySelector('textarea.q-short'); if (t) return t.value;
+    return '';
+  }
+  async function check(q) {
+    const key = q.dataset.key; if (!key) return null;          // open question
+    const val = selected(q); if (!val) return null;
+    const ok = (await sha256(val)) === key;
+    const mark = q.querySelector('.q-mark');
+    if (mark) { mark.textContent = ok ? '✓' : '✗'; mark.className = 'q-mark ' + (ok ? 'is-ok' : 'is-no'); }
+    return ok;
+  }
+  const qs = () => [...document.querySelectorAll('.q')];
+  document.addEventListener('change', e => { const q = e.target.closest('.q'); if (q && q.dataset.key) check(q); });
+
+  // "Go over the answers" — reveal the check section's correct answers + why (after they commit).
+  document.addEventListener('click', e => {
+    if (e.target.classList && e.target.classList.contains('ws-reveal')) {
+      const sec = e.target.closest('.ws-sec');
+      if (sec) sec.querySelectorAll('.q-reveal').forEach(r => { r.hidden = false; });
+      e.target.textContent = 'Answers shown ✓'; e.target.disabled = true;
+    }
+  });
+
+  document.getElementById('download').addEventListener('click', async () => {
+    const last = document.getElementById('last').value.trim();
+    const first = document.getElementById('first').value.trim();
+    const period = document.getElementById('period').value.trim() || '—';
+    const student = (last && first) ? `${last}, ${first}` : (last || first || 'Unnamed');
+    let score = 0, max = 0, n = 0; const rows = [], shorts = [];
+    for (const q of qs()) {
+      const val = selected(q), prompt = q.querySelector('.q-prompt').textContent;
+      if (q.dataset.type === 'short') { shorts.push({ prompt, text: val }); continue; }
+      max++; n++; const ok = await check(q); if (ok) score++;
+      rows.push({ n, prompt, answer: val, correct: !!ok });
+    }
+    const md = window.__buildMarkdown({ student, period, score, score_max: max, rows,
+      shortAnswers: shorts, submitted: new Date().toISOString() });
+    const fname = window.__filename(student);
+    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = fname;
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 0);
+  });
+})();
+</script>
+</body></html>
