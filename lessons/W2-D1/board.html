@@ -1,0 +1,442 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Electric Forces — the two factors — Board</title>
+<style>/* =========================================================
+   board.css — Stratosyn dark projector stylesheet
+   Board: full-screen, button-navigated, no-scroll, 16:9
+   ========================================================= */
+
+/* ----- Design Tokens ----- */
+:root {
+  --void:   #0d1322;
+  --ink:    #161d31;
+  --fog:    #28324a;
+  --mist:   #9aabd0;
+  --bone:   #e8ecf3;
+  --gold:   #f5c842;
+  --cyan:   #00e5ff;
+  --border: #2a3142;
+
+  --font-serif:   Fraunces, Georgia, serif;
+  --font-display: Inter, system-ui, sans-serif;
+  --font-mono:    "DM Mono", ui-monospace, monospace;
+}
+
+/* ----- Reset / Root ----- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #0d1322;
+  color: #e8ecf3;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+/* ----- Board Shell ----- */
+.board {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.b-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4vh 2vw;
+  border-bottom: 1px solid var(--border);
+  background: var(--ink);
+  gap: 1.6vw;
+  flex-shrink: 0;
+  font-variant: small-caps;
+}
+
+.b-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.8vw, 24px);
+  color: var(--bone);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.b-phase {
+  font-family: var(--font-mono);
+  font-size: clamp(12px, 1.2vw, 16px);
+  color: var(--mist);
+  white-space: nowrap;
+}
+
+.b-clock {
+  font-family: var(--font-mono);
+  font-size: clamp(12px, 1.2vw, 16px);
+  color: var(--mist);
+  white-space: nowrap;
+}
+
+.b-timer {
+  font-family: var(--font-mono);
+  font-size: clamp(22px, 2.6vw, 38px);
+  color: var(--gold);
+  font-weight: 600;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.b-timer.is-low {
+  color: #ff6b6b;
+}
+
+.b-vol {
+  font-family: var(--font-mono);
+  font-size: clamp(11px, 1.1vw, 14px);
+  color: var(--mist);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.3vh 0.9vw;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   STAGE
+   ========================================================= */
+.b-stage {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ----- Screen panels ----- */
+.screen {
+  position: absolute;
+  inset: 0;
+  padding: 3vh 4vw;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.4vh;
+  box-sizing: border-box;
+}
+
+.screen.is-active {
+  display: flex;
+}
+
+/* =========================================================
+   TYPOGRAPHY — Screen content
+   ========================================================= */
+
+/* Eyebrow label (mono, gold, allcaps) */
+.b-eyebrow {
+  font-family: "DM Mono", monospace;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f5c842;
+  font-size: clamp(12px, 1.3vw, 16px);
+  line-height: 1.2;
+}
+
+/* Hero question — Fraunces italic, large */
+.b-hero-q {
+  font-family: Fraunces, Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(28px, 4.2vw, 52px);
+  line-height: 1.1;
+  color: #e8ecf3;
+}
+
+/* Standard heading */
+.b-h {
+  font-family: Fraunces, Georgia, serif;
+  font-size: clamp(24px, 3.4vw, 42px);
+  line-height: 1.15;
+  color: var(--bone);
+  margin: 0;
+}
+
+/* Body rule / paragraph */
+.b-rule {
+  font-size: clamp(18px, 2vw, 28px);
+  line-height: 1.4;
+  color: var(--bone);
+}
+
+/* Dim note */
+.b-note {
+  color: #9aabd0;
+  font-size: clamp(14px, 1.5vw, 20px);
+  line-height: 1.4;
+}
+
+/* ----- Label ----- */
+.b-lbl {
+  display: block;
+  font-family: "DM Mono", monospace;
+  font-size: clamp(11px, 1.1vw, 14px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f5c842;
+  margin-bottom: 4px;
+}
+
+/* ----- Objective / Success-Criteria cards ----- */
+.b-obj,
+.b-sc {
+  border-left: 3px solid var(--gold);
+  background: var(--ink);
+  padding: 1.2vh 1.4vw;
+  font-size: clamp(16px, 1.7vw, 22px);
+  line-height: 1.4;
+  border-radius: 0 6px 6px 0;
+}
+
+/* ----- Lists ----- */
+.b-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8vh;
+}
+
+.b-list li {
+  font-size: clamp(16px, 1.8vw, 24px);
+  line-height: 1.45;
+  padding-left: 1.2em;
+  position: relative;
+}
+
+.b-list li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ----- Agenda (ordered) ----- */
+.b-agenda {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7vh;
+}
+
+.b-agenda li {
+  font-size: clamp(16px, 1.8vw, 24px);
+  line-height: 1.45;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+}
+
+/* Inline time tag */
+.b-min {
+  font-family: var(--font-mono);
+  font-size: clamp(12px, 1.2vw, 16px);
+  color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+  border-radius: 4px;
+  padding: 0.1em 0.45em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ----- Hero SVG container ----- */
+.b-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.b-hero svg {
+  max-height: 46vh;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ----- Media (full-width iframe) ----- */
+.b-media iframe {
+  width: 100%;
+  height: 60vh;
+  border: 0;
+  border-radius: 10px;
+  background: #000;
+  display: block;
+}
+
+/* ----- Split layout (sim + predict) ----- */
+.b-split {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2vw;
+  align-items: center;
+}
+
+.b-split .b-media iframe {
+  height: 58vh;
+}
+
+/* Predict column list — slightly smaller */
+.b-predict .b-list li {
+  font-size: clamp(14px, 1.55vw, 20px);
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.b-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4vh 2vw;
+  border-top: 1px solid var(--border);
+  background: var(--ink);
+  flex-shrink: 0;
+  gap: 1.6vw;
+}
+
+/* Teacher cue strip */
+.b-cue {
+  font-family: var(--font-mono);
+  font-size: clamp(12px, 1.3vw, 17px);
+  color: var(--mist);
+}
+
+.b-cue b {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* Nav buttons */
+.b-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.8vw;
+}
+
+.b-nav button {
+  font-family: var(--font-mono);
+  font-size: clamp(12px, 1.2vw, 16px);
+  background: var(--ink);
+  color: var(--bone);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 1vh 1.6vw;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.b-nav button:hover {
+  background: var(--fog);
+  border-color: var(--mist);
+}
+
+.b-nav button:active {
+  background: var(--fog);
+}
+
+/* Running timer state */
+#timer-toggle.is-running {
+  border-color: #f5c842;
+  color: #f5c842;
+}
+</style></head>
+<body><div class="board">
+  <header class="b-head">
+    <div class="b-title">Electric Forces — the two factors</div>
+    <div class="b-phase">Phase <span id="phase-num">1</span> / <span id="phase-total">7</span></div>
+    <div class="b-clock" id="b-clock">—</div>
+    <div class="b-timer" id="b-timer">0:00</div>
+    <div class="b-vol" id="b-vol">0 · Silent</div>
+  </header>
+  <main class="b-stage"><section class="screen" data-min="3" data-volume="0"><div class="b-eyebrow">Today</div><h2 class="b-h">Agenda</h2><ol class="b-agenda"><li><span class="b-min">3m</span> Arrival &amp; Agenda</li><li><span class="b-min">5m</span> Do Now</li><li><span class="b-min">3m</span> Review &amp; Hook</li><li><span class="b-min">8m</span> I do — The Two Dials</li><li><span class="b-min">10m</span> We do — Turn the Dials</li><li><span class="b-min">12m</span> You do — Activity</li><li><span class="b-min">7m</span> Exit &amp; Close</li></ol><p class="b-note">Seats · Chromebook out · open your worksheet. Bell-work starts after attendance.</p></section>
+<section class="screen" data-min="5" data-volume="0"><div class="b-eyebrow">⚡ Do Now — Notice / Wonder</div><h2 class="b-hero-q">Why does a balloon stick to the wall — with nothing holding it there?</h2><div class="b-hero"><svg viewBox="0 0 520 210" class="daily-hero" xmlns="http://www.w3.org/2000/svg">
+<path d="M158 95 C 235 35, 285 35, 362 95" fill="none" stroke="#9aabd0" stroke-width="1.4" stroke-dasharray="5 5" opacity="0.5"/>
+<path d="M158 95 C 235 62, 285 62, 362 95" fill="none" stroke="#9aabd0" stroke-width="1.4" stroke-dasharray="5 5" opacity="0.5"/>
+<path d="M158 95 L 362 95" fill="none" stroke="#9aabd0" stroke-width="1.4" stroke-dasharray="5 5" opacity="0.5"/>
+<path d="M158 95 C 235 128, 285 128, 362 95" fill="none" stroke="#9aabd0" stroke-width="1.4" stroke-dasharray="5 5" opacity="0.5"/>
+<path d="M158 95 C 235 155, 285 155, 362 95" fill="none" stroke="#9aabd0" stroke-width="1.4" stroke-dasharray="5 5" opacity="0.5"/>
+<circle cx="120" cy="95" r="40" fill="#f5c842" fill-opacity="0.16" stroke="#f5c842" stroke-width="2.5"/>
+<text x="120" y="109" text-anchor="middle" font-size="40" fill="#f5c842" font-family="Georgia, serif">+</text>
+<circle cx="400" cy="95" r="40" fill="#00e5ff" fill-opacity="0.16" stroke="#00e5ff" stroke-width="2.5"/>
+<text x="400" y="111" text-anchor="middle" font-size="46" fill="#00e5ff" font-family="Georgia, serif">−</text>
+<path d="M170 95 l28 0 M192 89 l8 6 l-8 6" stroke="#e8ecf3" stroke-width="2.5" fill="none"/>
+<path d="M350 95 l-28 0 M328 89 l-8 6 l8 6" stroke="#e8ecf3" stroke-width="2.5" fill="none"/>
+<path d="M120 152 l0 14 M120 159 l280 0 M400 152 l0 14" stroke="#9aabd0" stroke-width="1.2" fill="none" opacity="0.7"/>
+<text x="260" y="188" text-anchor="middle" font-size="12" fill="#9aabd0" font-family="DM Mono, monospace">distance — the closer they are, the harder the pull</text>
+</svg></div><p class="b-note">What do you NOTICE? What do you WONDER?</p></section>
+<section class="screen" data-min="3" data-volume="1"><div class="b-eyebrow">Today's question</div><h2 class="b-hero-q">A push you can't see, a pull you can't touch — what makes it stronger or weaker?</h2><div class="b-obj"><span class="b-lbl">Today you will</span>Name the two factors that change electric force (amount of charge · distance) and predict/explain how each changes it, backed by evidence.</div><div class="b-sc"><span class="b-lbl">You've got it when</span><ul class="b-list"><li>I can name the two factors that change electric force</li><li>I can predict whether the force gets stronger or weaker when each factor changes</li><li>I can back my prediction with evidence from the simulation</li></ul></div></section>
+<section class="screen" data-min="8" data-volume="0"><div class="b-eyebrow">I do</div><p class="b-rule">Electric force has <b>two dials</b>: <b>how much charge</b> (more → stronger) and <b>how far apart</b> (farther → weaker).</p><div class="b-media"><iframe class="b-yt" src="https://www.youtube-nocookie.com/embed/OQG83UvXn3w" title="Electric forces (Khan Academy)" allowfullscreen></iframe></div></section>
+<section class="screen" data-min="10" data-volume="1"><div class="b-eyebrow">We do — Turn the Dials · predict BEFORE I drag</div><div class="b-split"><div class="b-media"><iframe class="b-sim" src="sims/coulombs-law_all.html" title="Coulomb's Law" loading="lazy"></iframe></div><div class="b-predict"><ul class="b-list"><li>If you DOUBLE the charge, the force is…</li><li>If you move the charges FARTHER apart, the force is…</li><li>Two LIKE charges (+ and +) will…</li><li>Two OPPOSITE charges (+ and −) will…</li><li>Bringing the charges closer makes the force stronger.</li></ul></div></div></section>
+<section class="screen" data-min="12" data-volume="0"><div class="b-eyebrow">You do — Activity</div><h2 class="b-h">Work your worksheet — every question, then Download & turn in.</h2><p class="b-note">Done early? <b>Choice Board</b> (research · typing.com). Raise your hand <em>and keep working</em>.</p></section>
+<section class="screen" data-min="7" data-volume="0"><div class="b-eyebrow">Exit Ticket</div><ul class="b-list"><li>Exit: the two factors that change electric force are…</li><li>Exit: less distance between charges →</li></ul><p class="b-note">Download your work → upload to Canvas. Tomorrow: magnet exploration — test 20 objects.</p></section></main>
+  <footer class="b-foot">
+    <div class="b-cue"><b>Scientists!</b> → Ready!</div>
+    <div class="b-nav"><button id="prev">‹ Prev</button><button id="timer-toggle">▶ Timer</button><button id="next">Next ›</button></div>
+  </footer>
+</div>
+<script>(() => {
+  const screens = [...document.querySelectorAll('.screen')];
+  const phaseEl = document.getElementById('phase-num');
+  const totalEl = document.getElementById('phase-total');
+  const volEl = document.getElementById('b-vol');
+  const timerEl = document.getElementById('b-timer');
+  const clockEl = document.getElementById('b-clock');
+  const VOL = ['Silent', 'Whisper', 'Group'];
+  let i = 0, remaining = 0, running = false;
+
+  if (totalEl) totalEl.textContent = screens.length;
+
+  function fmt(s) { const m = Math.floor(s / 60), ss = s % 60; return `${m}:${String(ss).padStart(2, '0')}`; }
+  function setTimerFromScreen() {
+    const min = parseInt(screens[i].dataset.min || '0', 10);
+    remaining = min * 60; running = false; timerEl.textContent = fmt(remaining);
+    timerEl.classList.remove('is-low');
+    document.getElementById('timer-toggle')?.classList.remove('is-running');
+  }
+  function show(n) {
+    i = Math.max(0, Math.min(screens.length - 1, n));
+    screens.forEach((s, k) => s.classList.toggle('is-active', k === i));
+    if (phaseEl) phaseEl.textContent = i + 1;
+    const v = parseInt(screens[i].dataset.volume || '0', 10);
+    if (volEl) volEl.textContent = `${v} · ${VOL[v] || ''}`;
+    setTimerFromScreen();
+  }
+  document.getElementById('next')?.addEventListener('click', () => show(i + 1));
+  document.getElementById('prev')?.addEventListener('click', () => show(i - 1));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') show(i + 1);
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') show(i - 1);
+    if (e.key === ' ') { e.preventDefault(); toggleTimer(); }
+  });
+  function toggleTimer() { running = !running; document.getElementById('timer-toggle')?.classList.toggle('is-running', running); }
+  document.getElementById('timer-toggle')?.addEventListener('click', toggleTimer);
+
+  setInterval(() => {
+    if (clockEl) { const d = new Date(); clockEl.textContent = d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); }
+    if (running && remaining > 0) { remaining--; timerEl.textContent = fmt(remaining); if (remaining <= 30) timerEl.classList.add('is-low'); }
+  }, 1000);
+
+  show(0);
+})();
+</script>
+</body></html>
